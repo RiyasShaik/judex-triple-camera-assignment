@@ -1,0 +1,128 @@
+/*
+ * Global styles for the triple-camera review system.
+ * Using Inter for body text, JetBrains Mono for monospace stuff,
+ * and Barlow Condensed for labels/buttons (gives it that sports-broadcast feel).
+ */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&family=Barlow+Condensed:wght@400;500;600;700&display=swap');
+
+/* color tokens */
+:root {
+  --bg:          #090b0f;
+  --surface:     #0e1117;
+  --surface2:    #141820;
+  --surface3:    #1a2030;
+  --border:      rgba(255,255,255,0.07);
+  --border2:     rgba(255,255,255,0.12);
+
+  --amber:       #f5a623;
+  --amber-dim:   rgba(245,166,35,0.18);
+  --amber-glow:  rgba(245,166,35,0.08);
+  --red:         #ff3030;
+  --red-dim:     rgba(255,48,48,0.2);
+  --green:       #22d06e;
+  --green-dim:   rgba(34,208,110,0.2);
+  --blue:        #3b9eff;
+  --blue-dim:    rgba(59,158,255,0.2);
+  --purple:      #9b5de5;
+  --purple-dim:  rgba(155,93,229,0.2);
+
+  /* one color per camera */
+  --source-color: #3b9eff;
+  --sink-color:   #22d06e;
+  --hq-color:     #f5a623;
+
+  --font-sans:      'Inter', -apple-system, sans-serif;
+  --font-mono:      'JetBrains Mono', monospace;
+  --condensed:      'Barlow Condensed', 'Inter', sans-serif;
+
+  --muted:       rgba(255,255,255,0.38);
+  --muted2:      rgba(255,255,255,0.18);
+  --text:        rgba(255,255,255,0.88);
+
+  --shadow-sm:   0 2px 12px rgba(0,0,0,0.5);
+  --shadow-md:   0 8px 32px rgba(0,0,0,0.7);
+  --shadow-lg:   0 16px 64px rgba(0,0,0,0.85);
+}
+
+/* reset */
+*, *::before, *::after { box-sizing: border-box; }
+
+html, body, #root {
+  margin: 0; padding: 0;
+  height: 100%; width: 100%;
+  overflow: hidden;
+  font-family: var(--font-sans);
+  background: var(--bg);
+  color: var(--text);
+  -webkit-font-smoothing: antialiased;
+}
+
+/* scrollbar styling */
+::-webkit-scrollbar { width: 4px; }
+::-webkit-scrollbar-track { background: transparent; }
+::-webkit-scrollbar-thumb { background: rgba(255,255,255,0.12); border-radius: 4px; }
+::-webkit-scrollbar-thumb:hover { background: rgba(255,255,255,0.22); }
+
+/* utility classes */
+.mono   { font-family: var(--font-mono); }
+.cond   { font-family: var(--condensed); }
+.muted  { color: var(--muted); }
+.upper  { text-transform: uppercase; letter-spacing: 0.12em; }
+
+/* animations */
+@keyframes pulse {
+  0%, 100% { opacity: 1;   transform: scale(1); }
+  50%       { opacity: 0.4; transform: scale(0.7); }
+}
+@keyframes blink {
+  0%, 100% { opacity: 0.2; transform: scale(0.8); }
+  50%       { opacity: 1;   transform: scale(1.2); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to   { opacity: 1; }
+}
+@keyframes slideUp {
+  from { opacity: 0; transform: translateY(12px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes slideDown {
+  from { opacity: 0; transform: translateY(-8px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes spin {
+  to { transform: rotate(360deg); }
+}
+@keyframes markerPop {
+  0%   { transform: translate(-50%, -50%) scale(0.3); }
+  60%  { transform: translate(-50%, -50%) scale(1.2); }
+  100% { transform: translate(-50%, -50%) scale(1); }
+}
+@keyframes scanline {
+  0%   { background-position: 0 0; }
+  100% { background-position: 0 100%; }
+}
+@keyframes reviewPulse {
+  0%, 100% { border-color: rgba(245,166,35,0.2); }
+  50%       { border-color: rgba(245,166,35,0.5); }
+}
+@keyframes glowDot {
+  0%, 100% { box-shadow: 0 0 4px rgba(255,48,48,0.4); }
+  50%       { box-shadow: 0 0 12px rgba(255,48,48,0.8); }
+}
+
+/* button defaults */
+button { cursor: pointer; }
+button:focus-visible {
+  outline: 2px solid var(--amber);
+  outline-offset: 2px;
+}
+button:hover { filter: brightness(1.15); }
+button:active { transform: scale(0.97); }
+
+::selection { background: rgba(245,166,35,0.3); color: #fff; }
+
+/* hide the default video controls that sometimes flash */
+video::-webkit-media-controls { display: none !important; }
+video::-webkit-media-controls-enclosure { display: none !important; }
