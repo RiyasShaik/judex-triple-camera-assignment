@@ -1,0 +1,25 @@
+# Node / frontend
+streaming-move-main/player/node_modules/
+streaming-move-main/player/dist/
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+
+# Server runtime files (serve_ directories are auto-created at startup)
+streaming-move-main/serve_source/
+streaming-move-main/serve_sink/
+streaming-move-main/serve_hq/
+streaming-move-main/serve/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Editor
+.vscode/
+.idea/
+*.swp
